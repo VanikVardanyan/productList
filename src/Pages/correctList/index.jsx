@@ -1,17 +1,33 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Table } from "../../components/Table";
-import { getCorrectList } from "../../store/action/products";
-import { correctlyItem, loadingSelector } from "../../store/selectors";
+import { products } from "../../store/selectors";
 
 export const CorrectList = () => {
+  const [indexItem, setIndexItem] = useState(null);
   const location = useLocation();
-  const dispatch = useDispatch();
-  const product = useSelector(correctlyItem);
+  const allProducts = useSelector(products);
 
   useEffect(() => {
-    dispatch(getCorrectList(location.pathname.slice(1)));
-  }, [dispatch, location]);
-  return <Table key={product.rid} name={product.rname} data={product.goods} total={product.total} />;
+    const id = location.pathname.slice(1);
+    allProducts.forEach((elem, index) => {
+      if (elem.rid === id) {
+        setIndexItem(index);
+      }
+    });
+  }, [location, allProducts]);
+
+  if (indexItem === null) {
+    return "...loading";
+  }
+
+  return (
+    <Table
+      key={allProducts[indexItem].rid}
+      name={allProducts[indexItem].rname}
+      data={allProducts[indexItem].goods}
+      total={allProducts[indexItem].total}
+    />
+  );
 };

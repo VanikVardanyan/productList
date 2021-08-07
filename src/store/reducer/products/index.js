@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, CHANGE_PRICE, LOADING, GET_CORRECT_LIST } from "../../actionTypes";
+import { GET_PRODUCTS, CHANGE_PRICE, LOADING } from "../../actionTypes";
 
 const initialSate = {
   loading: false,
@@ -34,11 +34,6 @@ export const productsReducer = (state = initialSate, action) => {
         return accum;
       }, []);
       return { ...state, products: productChanges };
-    }
-    case GET_CORRECT_LIST: {
-      const { id } = action;
-      const currentList = state.products.find((elem) => elem.rid === id);
-      return { ...state, correctlyData: currentList };
     }
     case LOADING: {
       return { ...state, loading: action.loading };
