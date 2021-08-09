@@ -1,14 +1,16 @@
 .customTable {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 700px;
   &_wrapper {
     margin-top: 30px;
+    margin-bottom: 20px;
   }
 }
 .name {
   border: 1px solid #ddd;
   text-align: center;
+  width: 700px;
 }
 .customTable td,
 .customTable th {
@@ -39,15 +41,24 @@
   cursor: pointer;
   border: tomato;
   border-radius: 8px;
+  color: aqua;
   font-size: 16px;
   background-color: forestgreen;
+  border: 1px solid #000;
 }
 
 .basket {
-  position: relative;
+  position: absolute;
+  background-color: #04aa6d;
+  padding: 5px;
+  color: white;
+  font-size: large;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   &_inView {
-    position: "fixed";
-    bottom: "15px";
-    background-color: "red";
+    width: 100px;
+    height: auto;
+    position: sticky;
+    bottom: 3%;
   }
 }

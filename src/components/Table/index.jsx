@@ -11,13 +11,14 @@ const cx = classnames.bind(styles);
 
 export const Table = ({ name, data, total }) => {
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.1,
   });
   const dispatch = useDispatch();
   const handleToBasket = () => {
     const formData = normalizeFormData(data);
     dispatch(sendProductsRequest(formData));
   };
+
   return (
     <div className={styles.customTable_wrapper} ref={ref}>
       <div className={styles.name}>
@@ -39,13 +40,12 @@ export const Table = ({ name, data, total }) => {
           ))}
         </tbody>
       </table>
-      <div className={cx(!inView ? "" : "basket_inView")}>
+      <div className={cx("basket", inView && "basket_inView")}>
         total: {total}
         <button type="button" className={styles.basketBtn} onClick={handleToBasket}>
           basket
         </button>
       </div>
-      <h2>{`Header inside viewport ${inView}.`}</h2>
     </div>
   );
 };

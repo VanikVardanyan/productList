@@ -6,7 +6,6 @@ import { Route, Switch } from "react-router";
 import { Navbar } from "./navbar";
 import "./index.scss";
 import { CorrectList } from "./Pages/correctList";
-import { Link } from "react-router-dom";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +15,6 @@ const App = () => {
 
   return (
     <div className="app">
-      <Link to="/">Home </Link>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/:id" component={CorrectList} />
